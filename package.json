@@ -1,0 +1,19 @@
+{
+  "name": "challenge-nodejs-cds",
+  "version": "1.0.0",
+  "description": "Challenge NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facuft2/Challenge-NodeJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/facuft2/Challenge-NodeJS/issues"
+  },
+  "homepage": "https://github.com/facuft2/Challenge-NodeJS#readme"
+}
