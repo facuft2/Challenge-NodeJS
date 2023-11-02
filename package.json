@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js --ignore users.json",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
+    "format": "npx prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -23,14 +26,16 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "fs": "^0.0.1-security",
     "http-errors": "^2.0.0",
     "jsonwebtoken": "^9.0.2",
-    "lowdb": "^6.1.1",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
     "eslint": "^8.52.0",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
     "nodemon": "^3.0.1",
     "prettier": "^3.0.3"
   }
