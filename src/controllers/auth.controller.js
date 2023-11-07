@@ -3,16 +3,18 @@ const hashPass = require('../utils/hashPass.js')
 const bcrypt = require('bcrypt')
 const { generateToken } = require('../middlewares/auth.middleware')
 
-const registerUser = async props => {
+const registerUser = async (props) => {
   try {
     const { email, firstName, lastName, password } = props
     const users = await db.readUsers()
     const userExists = users.find(user => user.email === email)
+
     const id = userExists
       ? userExists.id
       : users.length > 0
       ? users[users.length - 1].id + 1
       : 1
+
     if (userExists) {
       return { result: 'User already exists', code: 400 }
     } else {
@@ -56,6 +58,7 @@ const loginUser = async props => {
       }
     } else {
       return { result: 'Invalid password', code: 400 }
+
     }
   } catch (error) {
     throw new Error(error)

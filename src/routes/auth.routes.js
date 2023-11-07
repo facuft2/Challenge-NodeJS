@@ -6,6 +6,7 @@ const { loginCheck } = require('../middlewares/auth.middleware')
 router.post('/register', async ({ body }, res) => {
   try {
     const { result, code } = await registerUser(body)
+
     switch (code) {
       case 201:
         return res.status(code).json({ user: result })
@@ -15,7 +16,9 @@ router.post('/register', async ({ body }, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
-})
+}
+)
+
 
 router.post('/login', loginCheck, async (req, res) => {
   try {
