@@ -1,12 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const { registerUser } = require('../controllers/auth.controller');
+const express = require('express')
+const router = express.Router()
+const { registerUser, loginUser } = require('../controllers/auth.controller')
+const { loginCheck } = require('../middlewares/auth.middleware')
 
-router.post('/register', async ( {body}, res) => {
-  try { 
+router.post('/register', async ({ body }, res) => {
+  try {
     const { result, code } = await registerUser(body)
-
-    console.log(result, code, 'result, code')
     switch (code) {
       case 201:
         return res.status(code).json({ user: result })
@@ -14,9 +13,26 @@ router.post('/register', async ( {body}, res) => {
         return res.status(code).json({ error: result })
     }
   } catch (error) {
-    res.status(500).json({error: error.message})
+    res.status(500).json({ error: error.message })
   }
-}
-)
+})
 
-module.exports = router;
+router.post('/login', loginCheck, async (req, res) => {
+  try {
+    const { email, password } = req.body
+    const { result, code } = await loginUser({ email, password })
+    switch (code) {
+      case 200:
+        return res
+          .status(code)
+          .header('Authorization', `Bearer ${result.token}`)
+          .json({message: 'Login successful', user: result.user })
+      case 400:
+        return res.status(code).json({ error: result })
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+})
+
+module.exports = router
