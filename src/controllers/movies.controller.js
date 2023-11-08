@@ -25,6 +25,11 @@ const addFavorite = async ({movieId, userId}) => {
             idUser,
             addedAt: date.toISOString()
         }
+
+        const movie = await moviesById({ movieId })
+        if (movie.code) {
+            return { error: movie.error, code: movie.code }
+        }
         if(!idMovie){
             return { error: 'Movie id is required', code: 400 }
         }
@@ -52,10 +57,13 @@ const getFavorites = async ({ idUser }) => {
         const movies = []
         for (const fav of favoritesByUser) {
             const movie = await moviesById({ movieId: fav.idMovie })
-            movie.suggestionForTodayScore = Math.floor(Math.random() * 100)
-            movies.push(movie)
+            movie.data.suggestionForTodayScore = Math.floor(Math.random() * 100)
+            movies.push(movie.data)
         }
-        return movies
+
+        const moviesSorted = movies.sort((a, b) => b.suggestionForTodayScore - a.suggestionForTodayScore)
+
+        return moviesSorted
     }
     catch (error) {
         throw new Error(error)
