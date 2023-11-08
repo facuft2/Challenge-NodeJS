@@ -3,13 +3,23 @@ const dotenv = require('dotenv')
 
 dotenv.config()
 
+const apiKey = process.env.API_TMDB_KEY
+
+const moviesById = async props => {
+  const movieId = props.movieId ? props.movieId : ''
+  console.log(movieId)
+  const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`
+  const movie = await axios.get(url)
+  return movie.data
+}
+
 const fetchMovies = async props => {
-  const apiKey = process.env.API_TMDB_KEY
   const keyword = props.keyword ? props.keyword : ''
 
   if (!apiKey) {
     return { error: 'No API key found', code: 500 }
   }
+
 
   if (!keyword) {
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`
@@ -30,4 +40,4 @@ const fetchMovies = async props => {
   return moviesWithScore
 }
 
-module.exports = fetchMovies
+module.exports = {fetchMovies,moviesById}
