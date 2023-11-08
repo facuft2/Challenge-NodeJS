@@ -16,9 +16,7 @@ router.post('/register', async ({ body }, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
-}
-)
-
+})
 
 router.post('/login', loginCheck, async (req, res) => {
   try {
@@ -29,7 +27,7 @@ router.post('/login', loginCheck, async (req, res) => {
         return res
           .status(code)
           .header('Authorization', `Bearer ${result.token}`)
-          .json({message: 'Login successful', user: result.user })
+          .json({ message: 'Login successful', user: result.user })
       case 400:
         return res.status(code).json({ error: result })
     }

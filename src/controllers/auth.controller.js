@@ -3,7 +3,7 @@ const hashPass = require('../utils/hashPass.js')
 const bcrypt = require('bcrypt')
 const { generateToken } = require('../middlewares/auth.middleware')
 
-const registerUser = async (props) => {
+const registerUser = async props => {
   try {
     const { email, firstName, lastName, password } = props
     const users = await db.readUsers()
@@ -58,7 +58,6 @@ const loginUser = async props => {
       }
     } else {
       return { result: 'Invalid password', code: 400 }
-
     }
   } catch (error) {
     throw new Error(error)
