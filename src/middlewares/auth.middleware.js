@@ -42,7 +42,7 @@ const generateToken = user => {
 
 const verifyToken = (req, res, next) => {
   const { authorization } = req.headers
-  
+
   if (!authorization) {
     return res.status(401).json({ error: 'Token not found' })
   }
@@ -56,7 +56,6 @@ const verifyToken = (req, res, next) => {
     return res.status(401).json({ error: 'Invalid token' })
   }
 }
-
 
 module.exports = {
   loginCheck,

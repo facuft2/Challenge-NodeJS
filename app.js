@@ -4,7 +4,7 @@ const morgan = require('morgan')
 const createError = require('http-errors')
 
 const auth = require('./src/routes/auth.routes')
-const movies = require('./src/routes/movies.routes')    
+const movies = require('./src/routes/movies.routes')
 
 require('dotenv').config()
 
@@ -16,8 +16,8 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cors())
 app.use(morgan('dev'))
 
-app.use("/auth", auth)
-app.use("/movies", movies)
+app.use('/auth', auth)
+app.use('/movies', movies)
 
 app.use((req, res, next) => {
   next(createError(404))
