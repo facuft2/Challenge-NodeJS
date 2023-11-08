@@ -40,7 +40,26 @@ const generateToken = user => {
   return token
 }
 
+const verifyToken = (req, res, next) => {
+  const { authorization } = req.headers
+  
+  if (!authorization) {
+    return res.status(401).json({ error: 'Token not found' })
+  }
+
+  const token = authorization.split(' ')[1]
+  try {
+    const decoded = jwt.verify(token, process.env.SECRET_KEY)
+    req.user = decoded
+    next()
+  } catch (error) {
+    return res.status(401).json({ error: 'Invalid token' })
+  }
+}
+
+
 module.exports = {
   loginCheck,
   generateToken,
+  verifyToken,
 }
