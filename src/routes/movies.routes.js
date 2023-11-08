@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { getMovies, addFavorite } = require('../controllers/movies.controller')
+const { getMovies, addFavorite, getFavorites } = require('../controllers/movies.controller')
 const { verifyToken } = require('../middlewares/auth.middleware')
 
 router.get('/', verifyToken, async (req, res) => {
@@ -31,6 +31,17 @@ router.post('/favorite', verifyToken, async (req, res) => {
 }
 )
 
-// router.get('/favorite', moviesController.getFavorites)
+router.get('/favorites', verifyToken, async (req, res) => {
+  const idUser = req.user.id
+  try {
+    const favorites = await getFavorites({ idUser })
+    if (favorites.error) {
+      return res.status(favorites.code).json({ error: favorites.error })
+    }
+    res.status(200).json(favorites)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+})
 
 module.exports = router

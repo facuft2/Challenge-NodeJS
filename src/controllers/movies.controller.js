@@ -1,4 +1,4 @@
-const fetchMovies = require('../utils/fetchMovies')
+const { fetchMovies, moviesById } = require('../utils/fetchMovies')
 const { readFavorites, writeFavorites } = require('../db/db')
 
 const getMovies = async props => {
@@ -42,7 +42,28 @@ const addFavorite = async ({movieId, userId}) => {
     }
 }
 
+const getFavorites = async ({ idUser }) => {
+    try {
+        const favorites = await readFavorites()
+        const favoritesByUser = favorites.filter(fav => fav.idUser === idUser)
+        if (favoritesByUser.length === 0) {
+            return { error: 'User has no favorites', code: 400 }
+        }
+        const movies = []
+        for (const fav of favoritesByUser) {
+            const movie = await moviesById({ movieId: fav.idMovie })
+            movie.suggestionForTodayScore = Math.floor(Math.random() * 100)
+            movies.push(movie)
+        }
+        return movies
+    }
+    catch (error) {
+        throw new Error(error)
+    }
+}
+
 module.exports = {
     getMovies,
-    addFavorite
+    addFavorite,
+    getFavorites,
 }
