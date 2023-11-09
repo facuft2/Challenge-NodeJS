@@ -1,0 +1,1644 @@
+{
+  "info": {
+    "_postman_id": "43442fd5-ec4a-495c-841d-d714ba72a77b",
+    "name": "API NodeJS Challenge",
+    "description": "### _**Authentication Token**_\n\nFor endpoints that require authentication, include the authentication token in the request headers:\n\n- Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\n    \n\nReplace `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` with the actual authentication token received after a successful login request.\n\n### _**Variables**_\n\nSetting Up the URL Base Variable:\n\nOpen Postman and click on the eye icon (top right corner) to open the environments menu.  \nClick on \"Manage Environments\".  \nCreate a new environment (e.g., \"Development\").  \nAdd a variable called url_base and assign the base URL of your API for the current environment (e.g., [http://localhost:3000](http://localhost:3000) for development).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17454654",
+    "_collection_link": "https://www.postman.com/facuft2/workspace/nodejs-challenge-cds/collection/17454654-43442fd5-ec4a-495c-841d-d714ba72a77b?action=share&source=collection_link&creator=17454654"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [""],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"example@gmail.com\",\r\n    \"password\": \"example123\",\r\n    \"firstName\": \"Jhon\",\r\n    \"lastName\": \"Doe\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}auth/register",
+              "host": ["{{base_url}}auth"],
+              "path": ["register"]
+            },
+            "description": "Gets information about the authenticated user."
+          },
+          "response": [
+            {
+              "name": "User created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"example@gmail.com\",\r\n    \"password\": \"example123\",\r\n    \"firstName\": \"facundo\",\r\n    \"lastName\": \"perez\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}auth/register",
+                  "host": ["{{base_url}}auth"],
+                  "path": ["register"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "116"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"74-HmoR6n5SvpC+Ke3TdcujOP4ixEA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 04:59:55 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"result\": {\n        \"message\": \"User created successfully\",\n        \"user\": {\n            \"id\": 5,\n            \"email\": \"example@gmail.com\",\n            \"firstName\": \"facundo\"\n        }\n    }\n}"
+            },
+            {
+              "name": "User already exists",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"example@gmail.com\",\r\n    \"password\": \"example123\",\r\n    \"firstName\": \"facundo\",\r\n    \"lastName\": \"perez\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}auth/register",
+                  "host": ["{{base_url}}auth"],
+                  "path": ["register"]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "31"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1f-lFUySNKwX3L5eGEwGcNcUoVKWhE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 04:56:07 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"User already exists\"\n}"
+            },
+            {
+              "name": "Invalid email",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"example@gmail.\",\r\n    \"password\": \"example123\",\r\n    \"firstName\": \"facundo\",\r\n    \"lastName\": \"perez\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}auth/register",
+                  "host": ["{{base_url}}auth"],
+                  "path": ["register"]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "25"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"19-Hem+AbryzXEwkXZ5J5oVEiIDHfw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 04:56:34 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Invalid email\"\n}"
+            },
+            {
+              "name": "Required field",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"password\": \"example123\",\r\n    \"firstName\": \"facundo\",\r\n    \"lastName\": \"perez\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}auth/register",
+                  "host": ["{{base_url}}auth"],
+                  "path": ["register"]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "29"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1d-uJAK8LkPwk686V0gDQJkraBtxT8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:00:26 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"email is required\"\n}"
+            },
+            {
+              "name": "Invalid password",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"example@gmail.com\",\r\n    \"password\": \"example\",\r\n    \"firstName\": \"facundo\",\r\n    \"lastName\": \"perez\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}auth/register",
+                  "host": ["{{base_url}}auth"],
+                  "path": ["register"]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "50"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"32-yKPTcGY2No8Bdpwo3cggLrytjXk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:01:46 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Password must be at least 8 characters\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "request": {
+            "auth": {
+              "type": "bearer"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"example@example.com\",\r\n    \"password\": \"example123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}auth/login",
+              "host": ["{{base_url}}auth"],
+              "path": ["login"]
+            }
+          },
+          "response": [
+            {
+              "name": "Login successful",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"a@gmail.com\",\r\n    \"password\": \"fafu2122\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}auth/login",
+                  "host": ["{{base_url}}auth"],
+                  "path": ["login"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhQGdtYWlsLmNvbSIsImZpcnN0TmFtZSI6ImZhY3VuZG8iLCJpYXQiOjE2OTkzODk4NzUsImV4cCI6MTY5OTM5MzQ3NX0.GC5LY8fdVTci03pDUlKXkHJ6JjGZR1AeG2Fjr0Wk7IA"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "90"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"5a-+h1MElF10BFHkU2tNFyOnhT1wD4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 07 Nov 2023 20:44:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Login successful\",\n    \"user\": {\n        \"id\": 1,\n        \"email\": \"a@gmail.com\",\n        \"firstName\": \"facundo\"\n    }\n}"
+            },
+            {
+              "name": "Email and password are required",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}auth/login",
+                  "host": ["{{base_url}}auth"],
+                  "path": ["login"]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "43"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2b-C6e/EBdR6LXyNK5A/isCT2gR1vI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 08 Nov 2023 23:56:25 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Email and password are required\"\n}"
+            },
+            {
+              "name": "Invalid email",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"a\",\r\n    \"password\": \"fafu2122\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}auth/login",
+                  "host": ["{{base_url}}auth"],
+                  "path": ["login"]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "25"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"19-Hem+AbryzXEwkXZ5J5oVEiIDHfw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 08 Nov 2023 23:57:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Invalid email\"\n}"
+            },
+            {
+              "name": "Password must be at least 8 characters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"aa@gmail.com\",\r\n    \"password\": \"example\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}auth/login",
+                  "host": ["{{base_url}}auth"],
+                  "path": ["login"]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "50"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"32-yKPTcGY2No8Bdpwo3cggLrytjXk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 08 Nov 2023 23:58:34 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Password must be at least 8 characters\"\n}"
+            },
+            {
+              "name": "Invalid password",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"aa@gmail.com\",\r\n    \"password\": \"examples\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}auth/login",
+                  "host": ["{{base_url}}auth"],
+                  "path": ["login"]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "28"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1c-GAUaDkbEnuwt3U4+7mmTRIkjj3Q\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 08 Nov 2023 23:59:03 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Invalid password\"\n}"
+            },
+            {
+              "name": "User not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"example@example.com\",\r\n    \"password\": \"example123\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}auth/login",
+                  "host": ["{{base_url}}auth"],
+                  "path": ["login"]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "26"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1a-hq/hT0ORGTkTfyRpVCZ/JB/r8Eg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:07:31 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"User not found\"\n}"
+            }
+          ]
+        }
+      ],
+      "description": "The `/me` endpoints let you manage information about the authenticated user."
+    },
+    {
+      "name": "Movies",
+      "item": [
+        {
+          "name": "getMovies",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "your token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}movies/?keyword=example",
+              "host": ["{{base_url}}movies"],
+              "path": [""],
+              "query": [
+                {
+                  "key": "keyword",
+                  "value": "example"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Token not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}movies/",
+                  "host": ["{{base_url}}movies"],
+                  "path": [""]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "27"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1b-ZMyqANdvd01Mq+IGj9fX8qQbEKU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:06:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Token not found\"\n}"
+            },
+            {
+              "name": "Invalid token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}movies/",
+                  "host": ["{{base_url}}movies"],
+                  "path": [""]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "25"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"19-1luTU257I9tvKUXOJotGBQDVDqk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:06:21 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Invalid token\"\n}"
+            },
+            {
+              "name": "Get movies without keyword",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}movies/",
+                  "host": ["{{base_url}}movies"],
+                  "path": [""]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "12988"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"32bc-jyBU6KzDIKS+f3OgFlTmmy5IEC0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:08:23 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/iiXliCeykkzmJ0Eg9RYJ7F2CWSz.jpg\",\n        \"genre_ids\": [\n            28,\n            53,\n            80\n        ],\n        \"id\": 762430,\n        \"original_language\": \"en\",\n        \"original_title\": \"Retribution\",\n        \"overview\": \"When a mysterious caller puts a bomb under his car seat, Matt Turner begins a high-speed chase across the city to complete a specific series of tasks- all with his kids trapped in the back seat.\",\n        \"popularity\": 771.76,\n        \"poster_path\": \"/ljl70pjLIX1hx3bPyCCbxGj6WPr.jpg\",\n        \"release_date\": \"2023-08-23\",\n        \"title\": \"Retribution\",\n        \"video\": false,\n        \"vote_average\": 7,\n        \"vote_count\": 601,\n        \"suggestionScore\": 92\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/pLm9j7o5InoWaG2tlaQABYR2cAx.jpg\",\n        \"genre_ids\": [\n            27,\n            9648,\n            53\n        ],\n        \"id\": 968051,\n        \"original_language\": \"en\",\n        \"original_title\": \"The Nun II\",\n        \"overview\": \"In 1956 France, a priest is violently murdered, and Sister Irene begins to investigate. She once again comes face-to-face with a powerful evil.\",\n        \"popularity\": 658.448,\n        \"poster_path\": \"/5gzzkR7y3hnY8AD1wXjCnVlHba5.jpg\",\n        \"release_date\": \"2023-09-06\",\n        \"title\": \"The Nun II\",\n        \"video\": false,\n        \"vote_average\": 6.9,\n        \"vote_count\": 1343,\n        \"suggestionScore\": 87\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/jkKVLzLWjSvTnc84VzeljhSy6j8.jpg\",\n        \"genre_ids\": [\n            10749,\n            18\n        ],\n        \"id\": 820525,\n        \"original_language\": \"en\",\n        \"original_title\": \"After Everything\",\n        \"overview\": \"Besieged by writer’s block and the crushing breakup with Tessa, Hardin travels to Portugal in search of a woman he wronged in the past – and to find himself. Hoping to win back Tessa, he realizes he needs to change his ways before he can make the ultimate commitment.\",\n        \"popularity\": 756.223,\n        \"poster_path\": \"/uQxjZGU6rxSPSMeAJPJQlmfV3ys.jpg\",\n        \"release_date\": \"2023-09-13\",\n        \"title\": \"After Everything\",\n        \"video\": false,\n        \"vote_average\": 7,\n        \"vote_count\": 454,\n        \"suggestionScore\": 78\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/dZbLqRjjiiNCpTYzhzL2NMvz4J0.jpg\",\n        \"genre_ids\": [\n            27,\n            53\n        ],\n        \"id\": 951491,\n        \"original_language\": \"en\",\n        \"original_title\": \"Saw X\",\n        \"overview\": \"Between the events of 'Saw' and 'Saw II', a sick and desperate John Kramer travels to Mexico for a risky and experimental medical procedure in hopes of a miracle cure for his cancer, only to discover the entire operation is a scam to defraud the most vulnerable. Armed with a newfound purpose, the infamous serial killer returns to his work, turning the tables on the con artists in his signature visceral way through devious, deranged, and ingenious traps.\",\n        \"popularity\": 907.74,\n        \"poster_path\": \"/aQPeznSu7XDTrrdCtT5eLiu52Yu.jpg\",\n        \"release_date\": \"2023-09-26\",\n        \"title\": \"Saw X\",\n        \"video\": false,\n        \"vote_average\": 7.3,\n        \"vote_count\": 921,\n        \"suggestionScore\": 72\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/tC78Pck2YCsUAtEdZwuHYUFYtOj.jpg\",\n        \"genre_ids\": [\n            28,\n            53,\n            80\n        ],\n        \"id\": 926393,\n        \"original_language\": \"en\",\n        \"original_title\": \"The Equalizer 3\",\n        \"overview\": \"Robert McCall finds himself at home in Southern Italy but he discovers his friends are under the control of local crime bosses. As events turn deadly, McCall knows what he has to do: become his friends' protector by taking on the mafia.\",\n        \"popularity\": 872.633,\n        \"poster_path\": \"/b0Ej6fnXAP8fK75hlyi2jKqdhHz.jpg\",\n        \"release_date\": \"2023-08-30\",\n        \"title\": \"The Equalizer 3\",\n        \"video\": false,\n        \"vote_average\": 7.4,\n        \"vote_count\": 1469,\n        \"suggestionScore\": 66\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/3H9NA1KWEQN0ItL3Wl3SFZYP6yV.jpg\",\n        \"genre_ids\": [\n            28,\n            878,\n            12\n        ],\n        \"id\": 565770,\n        \"original_language\": \"en\",\n        \"original_title\": \"Blue Beetle\",\n        \"overview\": \"Recent college grad Jaime Reyes returns home full of aspirations for his future, only to find that home is not quite as he left it. As he searches to find his purpose in the world, fate intervenes when Jaime unexpectedly finds himself in possession of an ancient relic of alien biotechnology: the Scarab.\",\n        \"popularity\": 479.605,\n        \"poster_path\": \"/mXLOHHc1Zeuwsl4xYKjKh2280oL.jpg\",\n        \"release_date\": \"2023-08-16\",\n        \"title\": \"Blue Beetle\",\n        \"video\": false,\n        \"vote_average\": 7,\n        \"vote_count\": 1501,\n        \"suggestionScore\": 62\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/askg3SMvhqEl4OL52YuvdtY40Yb.jpg\",\n        \"genre_ids\": [\n            10751,\n            16,\n            14,\n            10402,\n            35,\n            12\n        ],\n        \"id\": 354912,\n        \"original_language\": \"en\",\n        \"original_title\": \"Coco\",\n        \"overview\": \"Despite his family’s baffling generations-old ban on music, Miguel dreams of becoming an accomplished musician like his idol, Ernesto de la Cruz. Desperate to prove his talent, Miguel finds himself in the stunning and colorful Land of the Dead following a mysterious chain of events. Along the way, he meets charming trickster Hector, and together, they set off on an extraordinary journey to unlock the real story behind Miguel's family history.\",\n        \"popularity\": 406.24,\n        \"poster_path\": \"/gGEsBPAijhVUFoiNpgZXqRVWJt2.jpg\",\n        \"release_date\": \"2017-10-27\",\n        \"title\": \"Coco\",\n        \"video\": false,\n        \"vote_average\": 8.2,\n        \"vote_count\": 18094,\n        \"suggestionScore\": 60\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/eSsMzJpzAwCa69tm6Wco2il44aJ.jpg\",\n        \"genre_ids\": [\n            28,\n            80,\n            18,\n            53\n        ],\n        \"id\": 939335,\n        \"original_language\": \"en\",\n        \"original_title\": \"Muzzle\",\n        \"overview\": \"LAPD K-9 officer Jake Rosser has just witnessed the shocking murder of his dedicated partner by a mysterious assailant. As he investigates the shooter’s identity, he uncovers a vast conspiracy that has a chokehold on the city in this thrilling journey through the tangled streets of Los Angeles and the corrupt bureaucracy of the LAPD.\",\n        \"popularity\": 923.333,\n        \"poster_path\": \"/qXChf7MFL36BgoLkiB3BzXiwW82.jpg\",\n        \"release_date\": \"2023-09-29\",\n        \"title\": \"Muzzle\",\n        \"video\": false,\n        \"vote_average\": 6.4,\n        \"vote_count\": 93,\n        \"suggestionScore\": 58\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/5mzr6JZbrqnqD8rCEvPhuCE5Fw2.jpg\",\n        \"genre_ids\": [\n            28,\n            878,\n            27\n        ],\n        \"id\": 615656,\n        \"original_language\": \"en\",\n        \"original_title\": \"Meg 2: The Trench\",\n        \"overview\": \"An exploratory dive into the deepest depths of the ocean of a daring research team spirals into chaos when a malevolent mining operation threatens their mission and forces them into a high-stakes battle for survival.\",\n        \"popularity\": 552.326,\n        \"poster_path\": \"/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg\",\n        \"release_date\": \"2023-08-02\",\n        \"title\": \"Meg 2: The Trench\",\n        \"video\": false,\n        \"vote_average\": 6.8,\n        \"vote_count\": 2468,\n        \"suggestionScore\": 54\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/pA3vdhadJPxF5GA1uo8OPTiNQDT.jpg\",\n        \"genre_ids\": [\n            28,\n            18\n        ],\n        \"id\": 678512,\n        \"original_language\": \"en\",\n        \"original_title\": \"Sound of Freedom\",\n        \"overview\": \"The story of Tim Ballard, a former US government agent, who quits his job in order to devote his life to rescuing children from global sex traffickers.\",\n        \"popularity\": 1965.129,\n        \"poster_path\": \"/qA5kPYZA7FkVvqcEfJRoOy4kpHg.jpg\",\n        \"release_date\": \"2023-07-03\",\n        \"title\": \"Sound of Freedom\",\n        \"video\": false,\n        \"vote_average\": 8.2,\n        \"vote_count\": 1228,\n        \"suggestionScore\": 51\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/7NRGAtu8E4343NSKwhkgmVRDINw.jpg\",\n        \"genre_ids\": [\n            27,\n            9648\n        ],\n        \"id\": 507089,\n        \"original_language\": \"en\",\n        \"original_title\": \"Five Nights at Freddy's\",\n        \"overview\": \"Recently fired and desperate for work, a troubled young man named Mike agrees to take a position as a night security guard at an abandoned theme restaurant: Freddy Fazbear's Pizzeria. But he soon discovers that nothing at Freddy's is what it seems.\",\n        \"popularity\": 2260.734,\n        \"poster_path\": \"/A4j8S6moJS2zNtRR8oWF08gRnL5.jpg\",\n        \"release_date\": \"2023-10-25\",\n        \"title\": \"Five Nights at Freddy's\",\n        \"video\": false,\n        \"vote_average\": 8.2,\n        \"vote_count\": 1757,\n        \"suggestionScore\": 47\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/h56edmERPTkey89SqyKu4hINVNy.jpg\",\n        \"genre_ids\": [\n            28,\n            53\n        ],\n        \"id\": 575264,\n        \"original_language\": \"en\",\n        \"original_title\": \"Mission: Impossible - Dead Reckoning Part One\",\n        \"overview\": \"Ethan Hunt and his IMF team embark on their most dangerous mission yet: To track down a terrifying new weapon that threatens all of humanity before it falls into the wrong hands. With control of the future and the world's fate at stake and dark forces from Ethan's past closing in, a deadly race around the globe begins. Confronted by a mysterious, all-powerful enemy, Ethan must consider that nothing can matter more than his mission—not even the lives of those he cares about most.\",\n        \"popularity\": 3264.457,\n        \"poster_path\": \"/NNxYkU70HPurnNCSiCjYAmacwm.jpg\",\n        \"release_date\": \"2023-07-08\",\n        \"title\": \"Mission: Impossible - Dead Reckoning Part One\",\n        \"video\": false,\n        \"vote_average\": 7.7,\n        \"vote_count\": 2131,\n        \"suggestionScore\": 38\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/r7DuyYJ0N3cD8bRKsR5Ygq2P7oa.jpg\",\n        \"genre_ids\": [\n            12,\n            28,\n            18\n        ],\n        \"id\": 980489,\n        \"original_language\": \"en\",\n        \"original_title\": \"Gran Turismo\",\n        \"overview\": \"The ultimate wish-fulfillment tale of a teenage Gran Turismo player whose gaming skills won him a series of Nissan competitions to become an actual professional racecar driver.\",\n        \"popularity\": 761.002,\n        \"poster_path\": \"/51tqzRtKMMZEYUpSYkrUE7v9ehm.jpg\",\n        \"release_date\": \"2023-08-09\",\n        \"title\": \"Gran Turismo\",\n        \"video\": false,\n        \"vote_average\": 8,\n        \"vote_count\": 1346,\n        \"suggestionScore\": 29\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/AprNYUAS2AJ3xVgg7Wwt00GVvsM.jpg\",\n        \"genre_ids\": [\n            16,\n            10751,\n            28,\n            878\n        ],\n        \"id\": 893723,\n        \"original_language\": \"en\",\n        \"original_title\": \"PAW Patrol: The Mighty Movie\",\n        \"overview\": \"A magical meteor crash lands in Adventure City and gives the PAW Patrol pups superpowers, transforming them into The Mighty Pups.\",\n        \"popularity\": 558.774,\n        \"poster_path\": \"/aTvePCU7exLepwg5hWySjwxojQK.jpg\",\n        \"release_date\": \"2023-09-21\",\n        \"title\": \"PAW Patrol: The Mighty Movie\",\n        \"video\": false,\n        \"vote_average\": 6.9,\n        \"vote_count\": 125,\n        \"suggestionScore\": 29\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/wVTvfxz53pDqrIvbrxhVdKcLhip.jpg\",\n        \"genre_ids\": [\n            28,\n            12,\n            878,\n            53\n        ],\n        \"id\": 9381,\n        \"original_language\": \"en\",\n        \"original_title\": \"Babylon A.D.\",\n        \"overview\": \"A veteran-turned-mercenary is hired to take a young woman with a secret from post-apocalyptic Eastern Europe to New York City.\",\n        \"popularity\": 679.514,\n        \"poster_path\": \"/kt9nqD0uOar8IVE9191HXhWOXKI.jpg\",\n        \"release_date\": \"2008-08-20\",\n        \"title\": \"Babylon A.D.\",\n        \"video\": false,\n        \"vote_average\": 5.6,\n        \"vote_count\": 1874,\n        \"suggestionScore\": 23\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/tj7mp7uWjVw5N73G5Hwm1bkMOcD.jpg\",\n        \"genre_ids\": [\n            28,\n            10752\n        ],\n        \"id\": 975902,\n        \"original_language\": \"en\",\n        \"original_title\": \"Boudica\",\n        \"overview\": \"Inspired by events in A.D. 60, Boudica follows the eponymous Celtic warrior who rules the Iceni people alongside her husband Prasutagus. When he dies at the hands of Roman soldiers, Boudica’s kingdom is left without a male heir and the Romans seize her land and property.  Driven to the edge of madness and determined to avenge her husband’s death, Boudica rallies the various tribes from the region and wages an epic war against the mighty Roman empire.\",\n        \"popularity\": 1140.624,\n        \"poster_path\": \"/ssEFC5wfFjj7lJpUgwJDOK1Xu1J.jpg\",\n        \"release_date\": \"2023-10-26\",\n        \"title\": \"Boudica\",\n        \"video\": false,\n        \"vote_average\": 7,\n        \"vote_count\": 16,\n        \"suggestionScore\": 14\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/S3EIcOUQYxgd3QzjOo2rZJ2MN8.jpg\",\n        \"genre_ids\": [\n            28,\n            18,\n            10752\n        ],\n        \"id\": 554600,\n        \"original_language\": \"hi\",\n        \"original_title\": \"Uri: The Surgical Strike\",\n        \"overview\": \"Following the roguish terrorist attacks at Uri Army Base camp in Kashmir, India takes the fight to the enemy, in its most successful covert operation till date with one and only one objective of avenging their fallen heroes.\",\n        \"popularity\": 500.996,\n        \"poster_path\": \"/yNySAgpAnWmPpYinim9E0tUzJWG.jpg\",\n        \"release_date\": \"2019-01-11\",\n        \"title\": \"Uri: The Surgical Strike\",\n        \"video\": false,\n        \"vote_average\": 7.1,\n        \"vote_count\": 283,\n        \"suggestionScore\": 11\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/rMvPXy8PUjj1o8o1pzgQbdNCsvj.jpg\",\n        \"genre_ids\": [\n            28,\n            12,\n            53\n        ],\n        \"id\": 299054,\n        \"original_language\": \"en\",\n        \"original_title\": \"Expend4bles\",\n        \"overview\": \"Armed with every weapon they can get their hands on and the skills to use them, The Expendables are the world’s last line of defense and the team that gets called when all other options are off the table. But new team members with new styles and tactics are going to give “new blood” a whole new meaning.\",\n        \"popularity\": 811.877,\n        \"poster_path\": \"/iwsMu0ehRPbtaSxqiaUDQB9qMWT.jpg\",\n        \"release_date\": \"2023-09-15\",\n        \"title\": \"Expend4bles\",\n        \"video\": false,\n        \"vote_average\": 6.5,\n        \"vote_count\": 624,\n        \"suggestionScore\": 6\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/4XM8DUTQb3lhLemJC51Jx4a2EuA.jpg\",\n        \"genre_ids\": [\n            28,\n            80,\n            53\n        ],\n        \"id\": 385687,\n        \"original_language\": \"en\",\n        \"original_title\": \"Fast X\",\n        \"overview\": \"Over many missions and against impossible odds, Dom Toretto and his family have outsmarted, out-nerved and outdriven every foe in their path. Now, they confront the most lethal opponent they've ever faced: A terrifying threat emerging from the shadows of the past who's fueled by blood revenge, and who is determined to shatter this family and destroy everything—and everyone—that Dom loves, forever.\",\n        \"popularity\": 1062.686,\n        \"poster_path\": \"/fiVW06jE7z9YnO4trhaMEdclSiC.jpg\",\n        \"release_date\": \"2023-05-17\",\n        \"title\": \"Fast X\",\n        \"video\": false,\n        \"vote_average\": 7.2,\n        \"vote_count\": 4166,\n        \"suggestionScore\": 1\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/azD31DjpV3PJfjF3h72LVw2WCSD.jpg\",\n        \"genre_ids\": [\n            27\n        ],\n        \"id\": 807172,\n        \"original_language\": \"en\",\n        \"original_title\": \"The Exorcist: Believer\",\n        \"overview\": \"When two girls disappear into the woods and return three days later with no memory of what happened to them, the father of one girl seeks out Chris MacNeil, who's been forever altered by what happened to her daughter fifty years ago.\",\n        \"popularity\": 622.291,\n        \"poster_path\": \"/qVKirUdmoex8SdfUk8WDDWwrcCh.jpg\",\n        \"release_date\": \"2023-10-04\",\n        \"title\": \"The Exorcist: Believer\",\n        \"video\": false,\n        \"vote_average\": 6.1,\n        \"vote_count\": 491,\n        \"suggestionScore\": 0\n    }\n]"
+            },
+            {
+              "name": "Get movies with keyword",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}movies/?keyword=titanic",
+                  "host": ["{{base_url}}movies"],
+                  "path": [""],
+                  "query": [
+                    {
+                      "key": "keyword",
+                      "value": "titanic"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "13330"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3412-49PhFstCmsa4tSBNK1DV89FHI+Y\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:09:19 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"adult\": false,\n        \"backdrop_path\": null,\n        \"genre_ids\": [\n            18\n        ],\n        \"id\": 357517,\n        \"original_language\": \"de\",\n        \"original_title\": \"Titanic\",\n        \"overview\": \"\",\n        \"popularity\": 1.487,\n        \"poster_path\": \"/yi73me6Jl3zDelS9pQK5jtMRhsc.jpg\",\n        \"release_date\": \"1984-01-01\",\n        \"title\": \"Titanic\",\n        \"video\": false,\n        \"vote_average\": 7,\n        \"vote_count\": 7,\n        \"suggestionScore\": 92\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/bnuBhHLzsRapDWheh9kwNn6qZnp.jpg\",\n        \"genre_ids\": [\n            27,\n            878,\n            28,\n            14\n        ],\n        \"id\": 340382,\n        \"original_language\": \"ja\",\n        \"original_title\": \"進撃の巨人 ATTACK ON TITAN エンド オブ ザ ワールド\",\n        \"overview\": \"Eren Yeager leaves to restore a break in the wall destroyed by a Titan. He comes under attack by the Titans and is cornered. Shikishima comes to his aid. The titans never stops attacking.  Eren is now injured and tries to protect Armin, but is swallowed by a titan. A Titan with black hair appears and begins to expel the other titans.\",\n        \"popularity\": 67.498,\n        \"poster_path\": \"/l9cJ5PKEkVJb6YUCiURtcMbTQ5D.jpg\",\n        \"release_date\": \"2015-09-01\",\n        \"title\": \"Attack on Titan II: End of the World\",\n        \"video\": false,\n        \"vote_average\": 6.045,\n        \"vote_count\": 299,\n        \"suggestionScore\": 92\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/5DCIRgOrCTayoCGggVn1kyqs1Vh.jpg\",\n        \"genre_ids\": [\n            9648,\n            53,\n            27\n        ],\n        \"id\": 945657,\n        \"original_language\": \"en\",\n        \"original_title\": \"Titanic 666\",\n        \"overview\": \"After a mammoth cruise ship sails over the site of the Titanic’s disaster, dark and deadly events start to occur on board. As the ship’s captain investigates the tragic occurrences, it becomes clear that the passengers and crew from the original Titanic have returned.\",\n        \"popularity\": 20.513,\n        \"poster_path\": \"/je5x50SodTvJLbb5CTdj4vDT8HO.jpg\",\n        \"release_date\": \"2022-04-15\",\n        \"title\": \"Titanic 666\",\n        \"video\": false,\n        \"vote_average\": 5.827,\n        \"vote_count\": 150,\n        \"suggestionScore\": 91\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/a9PEsiwYwP7Uu90OBoumqPnTlGd.jpg\",\n        \"genre_ids\": [\n            16,\n            28,\n            14,\n            12\n        ],\n        \"id\": 330081,\n        \"original_language\": \"ja\",\n        \"original_title\": \"劇場版「進撃の巨人」後編～自由の翼～\",\n        \"overview\": \"As the Trost District is reclaimed from the Titans, Eren is taken under the wing of Captain Levi and his squad, who decide to try and teach him to master his mysterious abilities.\",\n        \"popularity\": 117.393,\n        \"poster_path\": \"/7PzZ3amc7hNJi0CiMcwC4BhoWKL.jpg\",\n        \"release_date\": \"2015-06-27\",\n        \"title\": \"Attack on Titan: Wings of Freedom\",\n        \"video\": true,\n        \"vote_average\": 8.306,\n        \"vote_count\": 276,\n        \"suggestionScore\": 89\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/e9XRikkyth0GtG8RkU3XNm0oMsA.jpg\",\n        \"genre_ids\": [\n            28,\n            12,\n            53\n        ],\n        \"id\": 44918,\n        \"original_language\": \"en\",\n        \"original_title\": \"Titanic II\",\n        \"overview\": \"On the 100th anniversary of the original voyage, a modern luxury liner christened \\\"Titanic 2,\\\" follows the path of its namesake. But when a tsunami hurls an ice berg into the new ship's path, the passengers and crew must fight to avoid a similar fate.\",\n        \"popularity\": 18.969,\n        \"poster_path\": \"/3m12UeP1DMfhYZyvpLftaJGsyp3.jpg\",\n        \"release_date\": \"2010-08-07\",\n        \"title\": \"Titanic II\",\n        \"video\": false,\n        \"vote_average\": 5.06,\n        \"vote_count\": 385,\n        \"suggestionScore\": 89\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": null,\n        \"genre_ids\": [\n            99\n        ],\n        \"id\": 1124589,\n        \"original_language\": \"en\",\n        \"original_title\": \"Titanic\",\n        \"overview\": \"This documentary explores the incredible history of the Titanic. From the crew to its final hours, Titanic chronicles this incredible story like never before. Get ready for Titanic.\",\n        \"popularity\": 2.595,\n        \"poster_path\": \"/l7rAG4P16SNFdPmWfTC8ZQydOon.jpg\",\n        \"release_date\": \"2023-02-07\",\n        \"title\": \"Titanic\",\n        \"video\": false,\n        \"vote_average\": 7.833,\n        \"vote_count\": 6,\n        \"suggestionScore\": 84\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/oTR3KI1kVQ6ULrR2X6TobDlYVzO.jpg\",\n        \"genre_ids\": [\n            16,\n            10751\n        ],\n        \"id\": 44310,\n        \"original_language\": \"it\",\n        \"original_title\": \"La leggenda del Titanic\",\n        \"overview\": \"Old Grandpa mouse tells to his grandchildren the \\\"real\\\" story of the Titanic disaster, including evil sharks, a giant octopus, and an evil whaling scheme.\",\n        \"popularity\": 3.9,\n        \"poster_path\": \"/tscmcvMs9T1TOjoMD7x12FveNsR.jpg\",\n        \"release_date\": \"1999-04-17\",\n        \"title\": \"The Legend of the Titanic\",\n        \"video\": false,\n        \"vote_average\": 3.5,\n        \"vote_count\": 42,\n        \"suggestionScore\": 76\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": null,\n        \"genre_ids\": [],\n        \"id\": 760524,\n        \"original_language\": \"en\",\n        \"original_title\": \"Titanic\",\n        \"overview\": \"\\\"Titanic\\\" is a Punjabi feature film. It is family movie. \\\"Titanic\\\" is based on a young boy's life whose dreams are so high. He wants to join Indian Navy. Unfortunately his life completely changed due to week financial conditions at home. He starts his work at low level driving of Autoriksha. He works so hard and he faces many obstacles in this work. At the end he accepted that his vehicle is submarine for him.\",\n        \"popularity\": 0.86,\n        \"poster_path\": null,\n        \"release_date\": \"2018-12-21\",\n        \"title\": \"Titanic\",\n        \"video\": false,\n        \"vote_average\": 8.1,\n        \"vote_count\": 5,\n        \"suggestionScore\": 73\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/4Sddw1BFQFHOIQZ3DY7QS0mGnVe.jpg\",\n        \"genre_ids\": [\n            16,\n            10751\n        ],\n        \"id\": 71235,\n        \"original_language\": \"it\",\n        \"original_title\": \"Titanic: La leggenda continua\",\n        \"overview\": \"An animated retelling of the worst passenger ship disaster in history. In this version, love blossoms between the upper-class Sir William and the blue-collar Angelica, who is hoping to find romance in America. At the same time, there are also a number of animal passengers, including talking dogs, cats and mice, who are also looking forward to arriving in the New World.\",\n        \"popularity\": 6.499,\n        \"poster_path\": \"/s1PHRSlos2hIFrtA8Ze0JybJTGb.jpg\",\n        \"release_date\": \"2000-09-15\",\n        \"title\": \"Titanic: The Legend Goes On...\",\n        \"video\": false,\n        \"vote_average\": 2.517,\n        \"vote_count\": 60,\n        \"suggestionScore\": 73\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/djFWCethTNYz5WPqIso6IVXTtFU.jpg\",\n        \"genre_ids\": [\n            10749,\n            18\n        ],\n        \"id\": 115872,\n        \"original_language\": \"fr\",\n        \"original_title\": \"La femme de chambre du Titanic\",\n        \"overview\": \"Horty, a French foundry worker, wins a contest and is sent to see the sailing of the Titanic. In England, Marie, saying she is a chambermaid on the Titanic and cannot get a room, asks to share his room. They do, chastely; when he awakens, she is gone, but he sees her at the sailing and gets a photo of her. When he returns home, he suspects that his wife Zoe has been sleeping with Simeon, the foundry owner. Horty goes to the bar, where his friends get him drunk and he starts telling an erotic fantasy of what happened with him and Marie, drawing a larger audience each night.\",\n        \"popularity\": 4.412,\n        \"poster_path\": \"/mMPED3zn786jkID7TWtLPt3WMyR.jpg\",\n        \"release_date\": \"1997-10-10\",\n        \"title\": \"The Chambermaid on the Titanic\",\n        \"video\": false,\n        \"vote_average\": 6.609,\n        \"vote_count\": 23,\n        \"suggestionScore\": 72\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/ahbx803wrITvlSjxLyp0Sfkzy3s.jpg\",\n        \"genre_ids\": [\n            18,\n            10749\n        ],\n        \"id\": 16535,\n        \"original_language\": \"en\",\n        \"original_title\": \"Titanic\",\n        \"overview\": \"Unhappily married, Julia Sturges decides to go to America with her two children on the Titanic. Her husband, Richard also arranges passage on the luxury liner so as to have custody of their two children. All this fades to insignificance once the ship hits an iceberg.\",\n        \"popularity\": 16.358,\n        \"poster_path\": \"/rEPzO9I6LCk6Mxg1X4BsBk6oA3V.jpg\",\n        \"release_date\": \"1953-04-11\",\n        \"title\": \"Titanic\",\n        \"video\": false,\n        \"vote_average\": 6.6,\n        \"vote_count\": 120,\n        \"suggestionScore\": 56\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": null,\n        \"genre_ids\": [],\n        \"id\": 455679,\n        \"original_language\": \"pt\",\n        \"original_title\": \"Titanic\",\n        \"overview\": \"\",\n        \"popularity\": 0.6,\n        \"poster_path\": null,\n        \"release_date\": \"\",\n        \"title\": \"Titanic\",\n        \"video\": false,\n        \"vote_average\": 8.3,\n        \"vote_count\": 3,\n        \"suggestionScore\": 56\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/fvHhaI3RGPjf5sVWEAhISPFYSM8.jpg\",\n        \"genre_ids\": [\n            36,\n            10402\n        ],\n        \"id\": 1181637,\n        \"original_language\": \"en\",\n        \"original_title\": \"Titanic: The Musical\",\n        \"overview\": \"In the final hours of April 14, 1912, the RMS Titanic, on her maiden voyage from Southampton to New York, collided with an iceberg and ‘the unsinkable ship’ slowly sank.  It was one of the most tragic disasters of the 20th Century.  Fifteen hundred seventeen men, women, and children lost their lives.\",\n        \"popularity\": 8.043,\n        \"poster_path\": \"/97ImleIDh9MHx8lLjbxbW3atSBn.jpg\",\n        \"release_date\": \"2023-11-04\",\n        \"title\": \"Titanic: The Musical\",\n        \"video\": true,\n        \"vote_average\": 0,\n        \"vote_count\": 0,\n        \"suggestionScore\": 56\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/2ZCq1wZ7avejS9Lkl0LmVpbiPec.jpg\",\n        \"genre_ids\": [\n            18,\n            10749,\n            53\n        ],\n        \"id\": 716855,\n        \"original_language\": \"fi\",\n        \"original_title\": \"Sokea mies, joka ei halunnut nähdä Titanicia\",\n        \"overview\": \"Jaakko and Sirpa have never met face to face, but talk on the phone every day. When Jaakko hears news about Sirpa's declining health, he decides to go meet her in another city. It's not the easiest decision, because he's blind and paralyzed from the chest down  - and he has to make the journey alone. To get there, Jaakko must rely on the help of five strangers. What could go wrong?\",\n        \"popularity\": 7.707,\n        \"poster_path\": \"/lYuZ8yvVuUJsISKY75yt6FIzJFb.jpg\",\n        \"release_date\": \"2021-09-10\",\n        \"title\": \"The Blind Man Who Did Not Want to See Titanic\",\n        \"video\": false,\n        \"vote_average\": 7.2,\n        \"vote_count\": 30,\n        \"suggestionScore\": 55\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": null,\n        \"genre_ids\": [\n            16\n        ],\n        \"id\": 1173502,\n        \"original_language\": \"fa\",\n        \"original_title\": \"Titanic, noskhe monaseb baraye khanevadehaye irani\",\n        \"overview\": \"A complex and sometimes combative exchange at an Iranian broadcaster over a certain Hollywood blockbuster disguises deeper ruptures, in Farnoosh Samadi’s wry and subtly provocative drama.\",\n        \"popularity\": 1.4,\n        \"poster_path\": null,\n        \"release_date\": \"2023-09-20\",\n        \"title\": \"Titanic, Suitable Version for Iranian Families\",\n        \"video\": false,\n        \"vote_average\": 0,\n        \"vote_count\": 0,\n        \"suggestionScore\": 53\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/lgM1l7E5F8SrgGyf6Tea7qbyS3o.jpg\",\n        \"genre_ids\": [\n            9648,\n            10751\n        ],\n        \"id\": 45891,\n        \"original_language\": \"no\",\n        \"original_title\": \"Titanics ti liv\",\n        \"overview\": \"A young girl finds excitement over the prospect of an ocean cruise, suddenly offset by a series of bizarre visions.\",\n        \"popularity\": 1.742,\n        \"poster_path\": \"/zJBSNGDMzL3EvQjuEzYqU0fB186.jpg\",\n        \"release_date\": \"2007-10-31\",\n        \"title\": \"The Ten Lives of Titanic the Cat\",\n        \"video\": false,\n        \"vote_average\": 5.1,\n        \"vote_count\": 7,\n        \"suggestionScore\": 52\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/8FhAKRTrTLsJfXOkWL6odZeb0M1.jpg\",\n        \"genre_ids\": [\n            28,\n            18,\n            36\n        ],\n        \"id\": 11021,\n        \"original_language\": \"de\",\n        \"original_title\": \"Titanic\",\n        \"overview\": \"This little-known German film retells the true story of the British ocean liner that met a tragic fate. Ernst Fritz Fürbringer plays the president of the White Star Line, who unwisely pressed the Titanic's captain (Otto Wernicke) to make the swiftest possible crossing to New York.\",\n        \"popularity\": 10.393,\n        \"poster_path\": \"/Al7oIXQ4dZAofBTZWm6OiXS3MEa.jpg\",\n        \"release_date\": \"1943-11-10\",\n        \"title\": \"Titanic\",\n        \"video\": false,\n        \"vote_average\": 6.2,\n        \"vote_count\": 66,\n        \"suggestionScore\": 46\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/bOtdLAnUxX3Hxn6LV5zFi15KW6S.jpg\",\n        \"genre_ids\": [\n            16,\n            28,\n            12,\n            14\n        ],\n        \"id\": 492999,\n        \"original_language\": \"ja\",\n        \"original_title\": \"劇場版 進撃の巨人 覚醒の咆哮\",\n        \"overview\": \"Eren Yeager and others of the 104th Training Corps have just begun to become full members of the Survey Corps. As they ready themselves to face the Titans once again, their preparations are interrupted by the invasion of Wall Rose—but all is not as it seems as more mysteries are unraveled. As the Survey Corps races to save the wall, they uncover more about the invading Titans and the dark secrets of their own members.\",\n        \"popularity\": 68.957,\n        \"poster_path\": \"/tLkdCvfmTOvxirrpSaaOBJD7qsU.jpg\",\n        \"release_date\": \"2018-01-13\",\n        \"title\": \"Attack on Titan: The Roar of Awakening\",\n        \"video\": true,\n        \"vote_average\": 8.399,\n        \"vote_count\": 271,\n        \"suggestionScore\": 36\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/rzdPqYx7Um4FUZeD8wpXqjAUcEm.jpg\",\n        \"genre_ids\": [\n            18,\n            10749\n        ],\n        \"id\": 597,\n        \"original_language\": \"en\",\n        \"original_title\": \"Titanic\",\n        \"overview\": \"101-year-old Rose DeWitt Bukater tells the story of her life aboard the Titanic, 84 years later. A young Rose boards the ship with her mother and fiancé. Meanwhile, Jack Dawson and Fabrizio De Rossi win third-class tickets aboard the ship. Rose tells the whole story from Titanic's departure through to its death—on its first and last voyage—on April 15, 1912.\",\n        \"popularity\": 120.125,\n        \"poster_path\": \"/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg\",\n        \"release_date\": \"1997-11-18\",\n        \"title\": \"Titanic\",\n        \"video\": false,\n        \"vote_average\": 7.9,\n        \"vote_count\": 23808,\n        \"suggestionScore\": 15\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/dRBZAGRSzAnr8PPZblhjaGPbj0w.jpg\",\n        \"genre_ids\": [\n            99\n        ],\n        \"id\": 777797,\n        \"original_language\": \"fr\",\n        \"original_title\": \"Titanic, au cœur de l’épave\",\n        \"overview\": \"The Titanic is under a new threat. Resting at over 12,500 feet below sea level and 380 nautical miles off the coast of Newfoundland, the most famous shipwreck in the world is being consumed by a colony of iron-eating bacteria. This slow and irreversible decay, according to the most concerned experts, will sweep away all the secrets of the mythic liner within a few decades. This documentary details the underwater odyssey of the greatest Titanic expeditions and the evolution of the most scrutinized shipwreck in the world. From the epic discovery of the wreck by a French-American team in 1985 to the exploratory missions led by James Cameron, and to the treasure hunts that brought back over 5,000 vestiges–experience the unequaled thrill of these extreme dives through the eyes of the explorers who have attempted to unlock Titanic’s secrets.\",\n        \"popularity\": 1.279,\n        \"poster_path\": \"/nSOyU2dfIUcKQjDRHaBp25p3R7g.jpg\",\n        \"release_date\": \"2020-12-17\",\n        \"title\": \"Titanic: Into the Heart of the Wreck\",\n        \"video\": false,\n        \"vote_average\": 6.9,\n        \"vote_count\": 5,\n        \"suggestionScore\": 4\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Movie not exist",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "your token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"movieId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}movies/favorite",
+              "host": ["{{base_url}}movies"],
+              "path": ["favorite"]
+            }
+          },
+          "response": [
+            {
+              "name": "Movie added to favorites",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"movieId\": 5\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}movies/favorite",
+                  "host": ["{{base_url}}movies"],
+                  "path": ["favorite"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "133"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"85-+Vfnvmrnae/hDnAzsOESNInU5SA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:27:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"result\": {\n        \"favorite\": {\n            \"idMovie\": 5,\n            \"idUser\": 2,\n            \"addedAt\": \"2023-11-09T05:27:40.690Z\"\n        },\n        \"message\": \"Movie added to favorites\",\n        \"code\": 201\n    }\n}"
+            },
+            {
+              "name": "Invalid token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"movieId\": 1\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}movies/favorite",
+                  "host": ["{{base_url}}movies"],
+                  "path": ["favorite"]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "25"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"19-1luTU257I9tvKUXOJotGBQDVDqk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:24:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Invalid token\"\n}"
+            },
+            {
+              "name": "Movie not exist",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"movieId\": 1\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}movies/favorite",
+                  "host": ["{{base_url}}movies"],
+                  "path": ["favorite"]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "47"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2f-cIZjTyXlpXORJAdm6aK7DoWXKWY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:24:57 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Request failed with status code 404\"\n}"
+            },
+            {
+              "name": "Token not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"movieId\": 1\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}movies/favorite",
+                  "host": ["{{base_url}}movies"],
+                  "path": ["favorite"]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "27"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1b-ZMyqANdvd01Mq+IGj9fX8qQbEKU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:26:24 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Token not found\"\n}"
+            },
+            {
+              "name": "Movie already in favorites",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"movieId\": 2\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}movies/favorite",
+                  "host": ["{{base_url}}movies"],
+                  "path": ["favorite"]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "38"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"26-Zjt71WtWs0jhcgIUc5pw1A6cPpc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:26:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Movie already in favorites\"\n}"
+            },
+            {
+              "name": "UserId not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}movies/favorite",
+                  "host": ["{{base_url}}movies"],
+                  "path": ["favorite"]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "47"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2f-cIZjTyXlpXORJAdm6aK7DoWXKWY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:31:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Request failed with status code 404\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "getFavorites",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "your token",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}movies/favorites",
+              "host": ["{{base_url}}movies"],
+              "path": ["favorites"]
+            }
+          },
+          "response": [
+            {
+              "name": "Token not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}movies/favorites",
+                  "host": ["{{base_url}}movies"],
+                  "path": ["favorites"]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "27"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1b-ZMyqANdvd01Mq+IGj9fX8qQbEKU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:19:03 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Token not found\"\n}"
+            },
+            {
+              "name": "Get favorites",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}movies/favorites",
+                  "host": ["{{base_url}}movies"],
+                  "path": ["favorites"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "4141"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"102d-G47GfF3c0ZXdo+ftDWUYJfWLKEQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:19:36 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"adult\": false,\n        \"backdrop_path\": null,\n        \"belongs_to_collection\": null,\n        \"budget\": 0,\n        \"genres\": [],\n        \"homepage\": \"\",\n        \"id\": 820524,\n        \"imdb_id\": null,\n        \"original_language\": \"ko\",\n        \"original_title\": \"삼중성\",\n        \"overview\": \"Korean movie.\",\n        \"popularity\": 0.6,\n        \"poster_path\": \"/4lGUtC8kfa06D55ETSdUf8UKHsS.jpg\",\n        \"production_companies\": [],\n        \"production_countries\": [],\n        \"release_date\": \"1991-12-21\",\n        \"revenue\": 0,\n        \"runtime\": 0,\n        \"spoken_languages\": [\n            {\n                \"english_name\": \"Korean\",\n                \"iso_639_1\": \"ko\",\n                \"name\": \"한국어/조선말\"\n            }\n        ],\n        \"status\": \"Released\",\n        \"tagline\": \"\",\n        \"title\": \"The Trio Stars\",\n        \"video\": false,\n        \"vote_average\": 0,\n        \"vote_count\": 0,\n        \"suggestionForTodayScore\": 94\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/S3EIcOUQYxgd3QzjOo2rZJ2MN8.jpg\",\n        \"belongs_to_collection\": null,\n        \"budget\": 0,\n        \"genres\": [\n            {\n                \"id\": 28,\n                \"name\": \"Action\"\n            },\n            {\n                \"id\": 18,\n                \"name\": \"Drama\"\n            },\n            {\n                \"id\": 10752,\n                \"name\": \"War\"\n            }\n        ],\n        \"homepage\": \"\",\n        \"id\": 554600,\n        \"imdb_id\": \"tt8291224\",\n        \"original_language\": \"hi\",\n        \"original_title\": \"Uri: The Surgical Strike\",\n        \"overview\": \"Following the roguish terrorist attacks at Uri Army Base camp in Kashmir, India takes the fight to the enemy, in its most successful covert operation till date with one and only one objective of avenging their fallen heroes.\",\n        \"popularity\": 500.996,\n        \"poster_path\": \"/yNySAgpAnWmPpYinim9E0tUzJWG.jpg\",\n        \"production_companies\": [\n            {\n                \"id\": 100972,\n                \"logo_path\": \"/ni6szJ3gzDOAmZwlHXKaFyvsxEQ.png\",\n                \"name\": \"RSVP Movies\",\n                \"origin_country\": \"IN\"\n            }\n        ],\n        \"production_countries\": [\n            {\n                \"iso_3166_1\": \"IN\",\n                \"name\": \"India\"\n            }\n        ],\n        \"release_date\": \"2019-01-11\",\n        \"revenue\": 0,\n        \"runtime\": 138,\n        \"spoken_languages\": [\n            {\n                \"english_name\": \"Hindi\",\n                \"iso_639_1\": \"hi\",\n                \"name\": \"हिन्दी\"\n            }\n        ],\n        \"status\": \"Released\",\n        \"tagline\": \"\",\n        \"title\": \"Uri: The Surgical Strike\",\n        \"video\": false,\n        \"vote_average\": 7.104,\n        \"vote_count\": 284,\n        \"suggestionForTodayScore\": 88\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/dQL2wJZo05GDd21VgOacMeCuyZy.jpg\",\n        \"belongs_to_collection\": null,\n        \"budget\": 0,\n        \"genres\": [\n            {\n                \"id\": 18,\n                \"name\": \"Drama\"\n            },\n            {\n                \"id\": 35,\n                \"name\": \"Comedy\"\n            },\n            {\n                \"id\": 10749,\n                \"name\": \"Romance\"\n            }\n        ],\n        \"homepage\": \"\",\n        \"id\": 2,\n        \"imdb_id\": \"tt0094675\",\n        \"original_language\": \"fi\",\n        \"original_title\": \"Ariel\",\n        \"overview\": \"After the coal mine he works at closes and his father commits suicide, a Finnish man leaves for the city to make a living but there, he is framed and imprisoned for various crimes.\",\n        \"popularity\": 11.358,\n        \"poster_path\": \"/ojDg0PGvs6R9xYFodRct2kdI6wC.jpg\",\n        \"production_companies\": [\n            {\n                \"id\": 2303,\n                \"logo_path\": null,\n                \"name\": \"Villealfa Filmproductions\",\n                \"origin_country\": \"FI\"\n            }\n        ],\n        \"production_countries\": [\n            {\n                \"iso_3166_1\": \"FI\",\n                \"name\": \"Finland\"\n            }\n        ],\n        \"release_date\": \"1988-10-21\",\n        \"revenue\": 0,\n        \"runtime\": 73,\n        \"spoken_languages\": [\n            {\n                \"english_name\": \"Finnish\",\n                \"iso_639_1\": \"fi\",\n                \"name\": \"suomi\"\n            }\n        ],\n        \"status\": \"Released\",\n        \"tagline\": \"\",\n        \"title\": \"Ariel\",\n        \"video\": false,\n        \"vote_average\": 7.046,\n        \"vote_count\": 270,\n        \"suggestionForTodayScore\": 40\n    },\n    {\n        \"adult\": false,\n        \"backdrop_path\": \"/jkKVLzLWjSvTnc84VzeljhSy6j8.jpg\",\n        \"belongs_to_collection\": {\n            \"id\": 702624,\n            \"name\": \"After Collection\",\n            \"poster_path\": \"/250ewaLutOJXqBBqMKxCHD1KpCL.jpg\",\n            \"backdrop_path\": \"/zZTy8G3sEVZNv0yGssgc7DvPUQJ.jpg\"\n        },\n        \"budget\": 14000000,\n        \"genres\": [\n            {\n                \"id\": 10749,\n                \"name\": \"Romance\"\n            },\n            {\n                \"id\": 18,\n                \"name\": \"Drama\"\n            }\n        ],\n        \"homepage\": \"\",\n        \"id\": 820525,\n        \"imdb_id\": \"tt15334488\",\n        \"original_language\": \"en\",\n        \"original_title\": \"After Everything\",\n        \"overview\": \"Besieged by writer’s block and the crushing breakup with Tessa, Hardin travels to Portugal in search of a woman he wronged in the past – and to find himself. Hoping to win back Tessa, he realizes he needs to change his ways before he can make the ultimate commitment.\",\n        \"popularity\": 874.867,\n        \"poster_path\": \"/uQxjZGU6rxSPSMeAJPJQlmfV3ys.jpg\",\n        \"production_companies\": [\n            {\n                \"id\": 6626,\n                \"logo_path\": \"/A1BnMoWjzjOrjzpWimyBQkf84mS.png\",\n                \"name\": \"Voltage Pictures\",\n                \"origin_country\": \"US\"\n            },\n            {\n                \"id\": 107108,\n                \"logo_path\": \"/5mxc7uNtFOZm2ly0BxixxGPvPlb.png\",\n                \"name\": \"Wattpad\",\n                \"origin_country\": \"US\"\n            }\n        ],\n        \"production_countries\": [\n            {\n                \"iso_3166_1\": \"US\",\n                \"name\": \"United States of America\"\n            }\n        ],\n        \"release_date\": \"2023-09-13\",\n        \"revenue\": 9700000,\n        \"runtime\": 93,\n        \"spoken_languages\": [\n            {\n                \"english_name\": \"English\",\n                \"iso_639_1\": \"en\",\n                \"name\": \"English\"\n            },\n            {\n                \"english_name\": \"Portuguese\",\n                \"iso_639_1\": \"pt\",\n                \"name\": \"Português\"\n            }\n        ],\n        \"status\": \"Released\",\n        \"tagline\": \"\",\n        \"title\": \"After Everything\",\n        \"video\": false,\n        \"vote_average\": 7.014,\n        \"vote_count\": 454,\n        \"suggestionForTodayScore\": 39\n    }\n]"
+            },
+            {
+              "name": "Invalid token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}movies/favorites",
+                  "host": ["{{base_url}}movies"],
+                  "path": ["favorites"]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "25"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"19-1luTU257I9tvKUXOJotGBQDVDqk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:20:05 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Invalid token\"\n}"
+            },
+            {
+              "name": "User has no favorites",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}movies/favorites",
+                  "host": ["{{base_url}}movies"],
+                  "path": ["favorites"]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "33"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"21-SeJwRhI7NKOmZJO3OQWewXaFI0w\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 09 Nov 2023 05:21:08 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"User has no favorites\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000/"
+    }
+  ]
+}
