@@ -5,20 +5,24 @@ const { loginCheck } = require('../middlewares/auth.middleware')
 const validateInput = require('../middlewares/inputValidator')
 const registerSchema = require('./validators/registerSchema')
 
-router.post('/register', validateInput(registerSchema), async ({ body }, res) => {
-  try {
-    const { result, code } = await registerUser(body)
+router.post(
+  '/register',
+  validateInput(registerSchema),
+  async ({ body }, res) => {
+    try {
+      const { result, code } = await registerUser(body)
 
-    switch (code) {
-      case 201:
-        return res.status(code).json({ result: result })
-      case 400:
-        return res.status(code).json({ error: result })
+      switch (code) {
+        case 201:
+          return res.status(code).json({ result: result })
+        case 400:
+          return res.status(code).json({ error: result })
+      }
+    } catch (error) {
+      res.status(500).json({ error: error.message })
     }
-  } catch (error) {
-    res.status(500).json({ error: error.message })
-  }
-})
+  },
+)
 
 router.post('/login', loginCheck, async (req, res) => {
   try {
