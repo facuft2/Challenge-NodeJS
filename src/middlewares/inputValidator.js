@@ -9,7 +9,6 @@ const validateInput =
     const valid = validate(req[`${ctx}`])
 
     if (!valid) {
-
       if (validate.errors[0].keyword === 'required') {
         return res.status(400).send({
           error: `${validate.errors[0].params.missingProperty} is required`,
