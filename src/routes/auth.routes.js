@@ -2,14 +2,16 @@ const express = require('express')
 const router = express.Router()
 const { registerUser, loginUser } = require('../controllers/auth.controller')
 const { loginCheck } = require('../middlewares/auth.middleware')
+const validateInput = require('../middlewares/inputValidator')
+const registerSchema = require('./validators/registerSchema')
 
-router.post('/register', async ({ body }, res) => {
+router.post('/register', validateInput(registerSchema), async ({ body }, res) => {
   try {
     const { result, code } = await registerUser(body)
 
     switch (code) {
       case 201:
-        return res.status(code).json({ user: result })
+        return res.status(code).json({ result: result })
       case 400:
         return res.status(code).json({ error: result })
     }

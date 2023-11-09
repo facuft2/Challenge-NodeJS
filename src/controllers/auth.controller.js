@@ -24,9 +24,12 @@ const registerUser = async props => {
       db.writeUsers(users)
       return {
         result: {
-          id: newUser.id,
-          email: newUser.email,
-          firstName: newUser.firstName,
+          message: 'User created successfully',
+          user: {
+            id: newUser.id,
+            email: newUser.email,
+            firstName: newUser.firstName,
+          },
         },
         code: 201,
       }
