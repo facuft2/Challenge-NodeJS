@@ -4,7 +4,7 @@ This is a Node.js API project for the challenge.
 
 ## Requirements
 
-[Node.js](https://nodejs.org/) (16.20.0 or higher) y [npm](https://www.npmjs.com/) are required.
+[Node.js](https://nodejs.org/) (16.20.0 or higher) and [npm](https://www.npmjs.com/) are required.
 
 ## Installation
 
